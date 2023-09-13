@@ -9,3 +9,9 @@ class Teacher:
 
     def __repr__(self) -> str:
         return f"Teacher: name={self.name}, subjects={self.subjects}, pref_room={self.pref_room}"
+
+    def get_subjects(self):
+        return self.subjects
+
+    def get_pref_room(self):
+        return self.pref_room

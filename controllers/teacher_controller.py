@@ -21,7 +21,7 @@ def teacher_selector(subject: str) -> Teacher | None:
     # Add more checks to select the teacher such as availability etc
 
     for teacher in TEACHERS:
-        if subject in teacher.subjects:
+        if subject in teacher.get_subjects():
             return teacher
 
     return None

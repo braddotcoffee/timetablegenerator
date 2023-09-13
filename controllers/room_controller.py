@@ -20,5 +20,9 @@ def room_selector(subject: str, teacher: Teacher) -> int | None:
 
     # Add more checks to select the room such as distance between rooms, is the room in use etc
 
-    if teacher.pref_room:
-        return teacher.pref_room if teacher.pref_room in ROOMS[subject] else None
+    if teacher.get_pref_room():
+        return (
+            teacher.get_pref_room()
+            if teacher.get_pref_room() in ROOMS[subject]
+            else None
+        )

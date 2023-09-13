@@ -8,3 +8,6 @@ class Student:
 
     def __repr__(self) -> str:
         return f"Student: name={self.name}, subjects={self.subjects}"
+
+    def get_subjects(self):
+        return self.subjects

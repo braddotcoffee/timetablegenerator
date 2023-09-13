@@ -28,7 +28,7 @@ def student_selector(subject: str) -> List[Student] | None:
         if len(classStudents) == 20:
             return classStudents
 
-        if subject in student.subjects:
+        if subject in student.get_subjects():
             classStudents.append(student)
 
     return classStudents if classStudents else None
