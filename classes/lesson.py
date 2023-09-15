@@ -32,3 +32,12 @@ class Lesson:
             f"Student three: {self.students[2].get_name()}\n"
             f"Student four: {self.students[3].get_name()}\n"
         )
+
+    def get_teacher(self):
+        return self.teacher
+
+    def get_room(self):
+        return self.room
+
+    def get_subject(self):
+        return self.subject

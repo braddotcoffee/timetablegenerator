@@ -15,6 +15,8 @@ mathsLessonOne = Lesson(
 
 print(mathsLessonOne)
 
+# TODO: Make a timetable for one of the teachers using their current classes
+
 # TODO: Make a teacher timetables containing subject, period, class, and room for each lesson assuming KS4 don't exist
 # TODO: When doing the task above, make sure that lessons are spread out, and students don't have one lesson P1, one lesson P6
 # TODO: Format the lessons in a nicer way than the console
