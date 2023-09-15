@@ -1,8 +1,8 @@
 from typing import List
 from pandas import DataFrame as df
 
-from lesson import Lesson
-from teacher import Teacher
+from classes.lesson import Lesson
+from classes.teacher import Teacher
 
 
 class Timetable:

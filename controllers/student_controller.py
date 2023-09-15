@@ -1,13 +1,9 @@
 from typing import List
 
-from student import Student
+from classes.student import Student
+from data.students import STUDENTS
 
-STUDENTS = [
-    Student("studentOne", ("Maths", "FurtherMaths", "ComputerScience")),
-    Student("studentTwo", ("Maths", "FurtherMaths", "ComputerScience")),
-    Student("studentThree", ("Maths", "FurtherMaths", "ComputerScience")),
-    Student("studentFour", ("Maths", "FurtherMaths", "ComputerScience")),
-]
+CLASS_SIZE = 20
 
 
 def student_selector(subject: str) -> List[Student] | None:
@@ -25,10 +21,16 @@ def student_selector(subject: str) -> List[Student] | None:
     classStudents = []
 
     for student in STUDENTS:
-        if len(classStudents) == 20:
+        # Limits the class size to the specified amount in the constant
+        if len(classStudents) == CLASS_SIZE:
             return classStudents
 
-        if subject in student.get_subjects():
+        # Checks if the student hasn't already got a lesson, and does the subject of the lesson
+        if subject in student.get_subjects() and student.is_available():
+            # Sets the students availability
+            student.set_available(False)
+            # Adds the student to the class
             classStudents.append(student)
 
+    # Returns the list of students if there is at least one student selected otherwise it returns None
     return classStudents if classStudents else None

@@ -3,7 +3,7 @@ from typing import Tuple
 
 class Teacher:
     def __init__(
-        self, name: str, subjects: Tuple[str, str], room: int, available: bool
+        self, name: str, subjects: Tuple[str, str], room: int, available: bool = True
     ) -> None:
         self.name = name
         self.subjects = subjects
@@ -14,6 +14,10 @@ class Teacher:
         return f"Teacher: name={self.name}, subjects={self.subjects}, pref_room={self.pref_room}, available={self.available}"
 
     # Getters
+
+    def get_name(self):
+        return self.name
+
     def get_subjects(self):
         return self.subjects
 

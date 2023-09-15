@@ -1,4 +1,4 @@
-from lesson import Lesson
+from classes.lesson import Lesson
 
 from controllers.room_controller import room_selector
 from controllers.student_controller import student_selector
@@ -15,6 +15,7 @@ mathsLessonOne = Lesson(
 
 print(mathsLessonOne)
 
-
-# TODO: Make the list of teachers in teacher_controller.py only a list of available teachers
-# TODO: Make a teacher timetables containing subject, period, class, and room for each lesson
+# TODO: Make a teacher timetables containing subject, period, class, and room for each lesson assuming KS4 don't exist
+# TODO: When doing the task above, make sure that lessons are spread out, and students don't have one lesson P1, one lesson P6
+# TODO: Format the lessons in a nicer way than the console
+# TODO: Add inclusion of KS4 students
