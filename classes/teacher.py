@@ -1,14 +1,21 @@
 from typing import Tuple
 
+from classes.timetable import Timetable
+
 
 class Teacher:
     def __init__(
-        self, name: str, subjects: Tuple[str, str], room: int, available: bool = True
+        self,
+        name: str,
+        subjects: Tuple[str, str],
+        room: int,
+        available: bool = True,
     ) -> None:
         self.name = name
         self.subjects = subjects
         self.pref_room = room
         self.available = available
+        self.timetable = Timetable()
 
     def __repr__(self) -> str:
         return f"Teacher: name={self.name}, subjects={self.subjects}, pref_room={self.pref_room}, available={self.available}"

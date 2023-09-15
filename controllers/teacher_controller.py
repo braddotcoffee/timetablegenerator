@@ -1,5 +1,12 @@
+from random import choice
+
 from classes.teacher import Teacher
-from data.teachers import TEACHERS
+
+TEACHERS = [
+    Teacher("Edit", ("Maths", "FurtherMaths"), 205),
+    Teacher("Lewis", ("Maths", "FurtherMaths"), 208),
+    Teacher("David", ("ComputerScience", "IT"), 308),
+]
 
 
 def teacher_selector(subject: str) -> Teacher | None:
@@ -12,17 +19,12 @@ def teacher_selector(subject: str) -> Teacher | None:
         Teacher | None: Returns a teacher or None
     """
 
-    # Searches for available teachers
-    available_teachers = [teacher for teacher in TEACHERS if teacher.is_available()]
+    # Searches for available teachers that teach the subject
+    available_teachers = [
+        teacher
+        for teacher in TEACHERS
+        if teacher.is_available() and subject in teacher.get_subjects()
+    ]
 
-    # Searches the available teachers to check:
-    # 1. If the teacher teaches the subject needed
-    for teacher in available_teachers:
-        if subject not in teacher.get_subjects():
-            continue
-
-        return teacher
-
-    # Just prints out this if there aren't any available teachers. Idk what happens after this
-    print("No teachers available")
-    return None
+    # Returns a random available teacher or None
+    return choice(available_teachers) if len(available_teachers) != 0 else None

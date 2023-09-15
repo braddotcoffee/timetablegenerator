@@ -10,10 +10,20 @@ mathsLessonOneStudents = student_selector("Maths")
 mathsLessonOneRoom = room_selector("Maths", mathsLessonOneTeacher)
 
 mathsLessonOne = Lesson(
-    mathsLessonOneTeacher, mathsLessonOneStudents, mathsLessonOneRoom, "Maths", 1
+    mathsLessonOneTeacher,
+    mathsLessonOneStudents,
+    "Ma12B",
+    mathsLessonOneRoom,
+    "Maths",
+    3,
+    "Tue",
 )
 
+computerScienceTeacher = teacher_selector("ComputerScience")
+
 print(mathsLessonOne)
+print(mathsLessonOneTeacher.timetable)
+print(mathsLessonOneTeacher.is_available())
 
 # TODO: Make a timetable for one of the teachers using their current classes
 

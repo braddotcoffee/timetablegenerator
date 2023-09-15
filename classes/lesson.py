@@ -1,6 +1,15 @@
+from typing import List
+
 from classes.student import Student
 from classes.teacher import Teacher
-from typing import List
+
+DAYS_TO_TIMETABLE_INDEX = {
+    "Mon": 0,
+    "Tue": 3,
+    "Wed": 6,
+    "Thu": 9,
+    "Fri": 12,
+}
 
 
 class Lesson:
@@ -8,19 +17,31 @@ class Lesson:
         self,
         teacher: Teacher,
         students: List[Student],
+        class_set: str,
         room: dict[int, bool, List[str]],
         subject: str,
         period: int,
+        day: str,
     ) -> None:
         self.teacher = teacher
         self.students = students
+        self.class_set = class_set
         self.room = room
         self.subject = subject
         self.period = period
+        self.day = day
 
         # All the stuff that happens when a lesson is created. E.g. teacher, room, and students becomes unavailable for the period
         self.teacher.available = False
         self.room["Available"] = False
+
+        for student in self.students:
+            student.set_available(False)
+
+        # Sets the timeslots on the teacher's timetable to those of this lesson
+        self.teacher.timetable.set_subject(self.subject, self.day)
+        self.teacher.timetable.set_class_set(self.class_set, self.day)
+        self.teacher.timetable.set_room(self.room, self.day)
 
     def __repr__(self) -> str:
         return (
