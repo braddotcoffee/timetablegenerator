@@ -31,3 +31,8 @@ print(mathsLessonOneTeacher.is_available())
 # TODO: When doing the task above, make sure that lessons are spread out, and students don't have one lesson P1, one lesson P6
 # TODO: Format the lessons in a nicer way than the console
 # TODO: Add inclusion of KS4 students
+
+# ? Data required for the program:
+# * Teachers: The subjects they teach, and their preferred room
+# * Rooms: Capacity of each room, and what subjects can be taught in them
+# * Students: What subjects students take

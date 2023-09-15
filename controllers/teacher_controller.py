@@ -1,12 +1,7 @@
 from random import choice
 
 from classes.teacher import Teacher
-
-TEACHERS = [
-    Teacher("Edit", ("Maths", "FurtherMaths"), 205),
-    Teacher("Lewis", ("Maths", "FurtherMaths"), 208),
-    Teacher("David", ("ComputerScience", "IT"), 308),
-]
+from data.teachers import TEACHERS
 
 
 def teacher_selector(subject: str) -> Teacher | None:

@@ -3,14 +3,6 @@ from typing import List
 from classes.student import Student
 from classes.teacher import Teacher
 
-DAYS_TO_TIMETABLE_INDEX = {
-    "Mon": 0,
-    "Tue": 3,
-    "Wed": 6,
-    "Thu": 9,
-    "Fri": 12,
-}
-
 
 class Lesson:
     def __init__(

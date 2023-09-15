@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import List
 
 from classes.timetable import Timetable
 
@@ -7,7 +7,7 @@ class Teacher:
     def __init__(
         self,
         name: str,
-        subjects: Tuple[str, str],
+        subjects: List[str],
         room: int,
         available: bool = True,
     ) -> None:
