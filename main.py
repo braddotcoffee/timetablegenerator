@@ -10,11 +10,11 @@ mathsLessonOneStudents = student_selector("Maths")
 mathsLessonOneRoom = room_selector("Maths", mathsLessonOneTeacher)
 
 mathsLessonOne = Lesson(
-    mathsLessonOneTeacher, mathsLessonOneStudents, mathsLessonOneRoom, "Maths"
+    mathsLessonOneTeacher, mathsLessonOneStudents, mathsLessonOneRoom, "Maths", 1
 )
 
 print(mathsLessonOne)
 
 
 # TODO: Make the list of teachers in teacher_controller.py only a list of available teachers
-# TODO:
+# TODO: Make a teacher timetables containing subject, period, class, and room for each lesson
