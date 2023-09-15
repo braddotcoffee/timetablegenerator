@@ -18,10 +18,10 @@ def teacher_selector(subject: str) -> Teacher | None:
         Teacher | None: Returns a teacher or None
     """
 
-    # Add more checks to select the teacher such as availability etc
-
     for teacher in TEACHERS:
-        if subject in teacher.get_subjects():
-            return teacher
+        if subject not in teacher.get_subjects():
+            return None
+        if not teacher.is_available():
+            return None
 
-    return None
+        return teacher
