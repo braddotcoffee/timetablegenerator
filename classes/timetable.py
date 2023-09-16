@@ -1,6 +1,8 @@
 from typing import List
 import pandas as pd
 
+from classes.room import Room
+
 import sys
 import os
 
@@ -80,10 +82,10 @@ class Timetable:
             f"P{DAYS_TO_TIMETABLE_INDEX[day]} ClassSet", [day]
         ] = class_set
 
-    def set_room(self, room, day):
-        self.timetable.loc[f"P{DAYS_TO_TIMETABLE_INDEX[day]} Room", [day]] = room[
-            "RoomNumber"
-        ]
+    def set_room(self, room: Room, day):
+        self.timetable.loc[
+            f"P{DAYS_TO_TIMETABLE_INDEX[day]} Room", [day]
+        ] = room.room_number
 
 
 # from controllers.teacher_controller import TEACHERS

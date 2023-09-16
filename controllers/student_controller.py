@@ -1,7 +1,7 @@
 from typing import List
 
 from classes.student import Student
-from data.students import STUDENTS
+from controllers.data_controller import STUDENTS
 
 CLASS_SIZE = 20
 

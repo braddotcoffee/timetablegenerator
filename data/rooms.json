@@ -1,0 +1,56 @@
+{
+    "MathRoomOne": {
+        "RoomNumber": 201,
+        "Available": true,
+        "Capacity": 0,
+        "Subjects": ["Maths", "FurtherMaths"]
+    },
+    "MathRoomTwo": {
+        "RoomNumber": 205,
+        "Available": true,
+        "Capacity": 0,
+        "Subjects": ["Maths", "FurtherMaths"]
+    },
+    "MathRoomThree": {
+        "RoomNumber": 206,
+        "Available": true,
+        "Capacity": 0,
+        "Subjects": ["Maths", "FurtherMaths"]
+    },
+    "MathRoomFour": {
+        "RoomNumber": 207,
+        "Available": true,
+        "Capacity": 0,
+        "Subjects": ["Maths", "FurtherMaths"]
+    },
+    "MathRoomFive": {
+        "RoomNumber": 208,
+        "Available": true,
+        "Capacity": 0,
+        "Subjects": ["Maths", "FurtherMaths"]
+    },
+    "ComputingRoomOne": {
+        "RoomNumber": 305,
+        "Available": true,
+        "Capacity": 0,
+        "Subjects": ["ComputerScience", "IT"]
+    },
+    "ComputingRoomTwo": {
+        "RoomNumber": 306,
+        "Available": true,
+        "Capacity": 0,
+        "Subjects": ["ComputerScience", "IT"]
+    },
+    "ComputingRoomThree": {
+        "RoomNumber": 307,
+        "Available": true,
+        "Capacity": 0,
+        "Subjects": ["ComputerScience", "IT"]
+    },
+    "ComputingRoomFour": {
+        "RoomNumber": 308,
+        "Available": true,
+        "Capacity": 0,
+        "Subjects": ["ComputerScience", "IT"]
+    }
+}

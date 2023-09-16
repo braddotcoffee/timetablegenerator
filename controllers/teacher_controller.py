@@ -1,7 +1,7 @@
 from random import choice
 
 from classes.teacher import Teacher
-from data.teachers import TEACHERS
+from controllers.data_controller import TEACHERS
 
 
 def teacher_selector(subject: str) -> Teacher | None:

@@ -1,5 +1,5 @@
 from classes.teacher import Teacher
-from data.rooms import ROOMS
+from controllers.data_controller import ROOMS
 
 
 def room_selector(subject: str, teacher: Teacher) -> int | None:
@@ -16,17 +16,17 @@ def room_selector(subject: str, teacher: Teacher) -> int | None:
     # TODO: Add more checks to select the room such as distance between rooms, is the room in use etc
 
     # Searches each room in to check if it is the teachers preferred room, it is available, and if the subject can be taught in the room
-    for room in ROOMS[subject]:
+    for room in ROOMS:
         if (
-            teacher.get_pref_room() == room["RoomNumber"]
-            and room["Available"]
-            and subject in room["Subjects"]
+            teacher.get_pref_room() == room.room_number
+            and room.available
+            and subject in room.subjects
         ):
             return room
 
     # Searches each room to check if it is available and if the subject can be taught in the room
-    for room in ROOMS[subject]:
-        if room["Available"] and subject in room["Subjects"]:
+    for room in ROOMS:
+        if room.available and subject in room.subject:
             return room
 
     # Just prints out this if there aren't any available rooms. Idk what happens after this

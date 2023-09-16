@@ -1,5 +1,6 @@
 from typing import List
 
+from classes.room import Room
 from classes.student import Student
 from classes.teacher import Teacher
 
@@ -10,7 +11,7 @@ class Lesson:
         teacher: Teacher,
         students: List[Student],
         class_set: str,
-        room: dict[int, bool, List[str]],
+        room: Room,
         subject: str,
         period: int,
         day: str,
@@ -25,7 +26,7 @@ class Lesson:
 
         # All the stuff that happens when a lesson is created. E.g. teacher, room, and students becomes unavailable for the period
         self.teacher.available = False
-        self.room["Available"] = False
+        self.room.available = False
 
         for student in self.students:
             student.set_available(False)
@@ -39,7 +40,7 @@ class Lesson:
         return (
             f"{self.subject} Lesson:\n"
             f"Teacher: {self.teacher.get_name()}\n"
-            f"Room: {self.room['RoomNumber']}\n"
+            f"Room: {self.room.room_number}\n"
             f"Student one: {self.students[0].get_name()}\n"
             f"Student two: {self.students[1].get_name()}\n"
             f"Student three: {self.students[2].get_name()}\n"

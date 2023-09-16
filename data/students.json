@@ -1,0 +1,19 @@
+{
+    "StudentOne": {
+        "Name": "studentOne",
+        "Subjects": ["Maths", "FurtherMaths", "ComputerScience"]
+    },
+    "StudentTwo": {
+        "Name": "studentTwo",
+        "Subjects": ["Maths", "FurtherMaths", "ComputerScience"]
+    },
+    "StudentThree": {
+        "Name": "studentThree",
+        "Subjects": ["Maths", "FurtherMaths", "ComputerScience"]
+    },
+    "StudentFour": {
+        "Name": "studentFour",
+        "Subjects": ["Maths", "FurtherMaths", "ComputerScience"]
+    }
+    
+}

@@ -1,10 +1,8 @@
-from typing import Tuple
+from typing import List
 
 
 class Student:
-    def __init__(
-        self, name: str, subjects: Tuple[str, str, str], available: bool = True
-    ) -> None:
+    def __init__(self, name: str, subjects: List[str], available: bool = True) -> None:
         self.name = name
         self.subjects = subjects
         self.available = available
