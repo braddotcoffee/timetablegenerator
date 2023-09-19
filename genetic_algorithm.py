@@ -25,6 +25,8 @@ class Subjects(Enum):
 
 
 class Individual:
+    """This is a whole working timetable of all the teachers"""
+
     def __init__(self, timetable: Timetable) -> None:
         self.timetable_genome = timetable
         self.fitness = self.calc_fitness()
@@ -54,8 +56,16 @@ class Individual:
                 )
                 random_room = choice(ROOMS["RoomName"])
 
-    def create_genome(self):
-        pass
+    def create_genome(self) -> Timetable:
+        """This function creates the randomly generated timetable, gl with this"""
+        # TODO: THIS
+        # * Technically I can make it as broken as I want, because
+        # * it will fix itself with the fitness checks.
+        # * So I just need to make timetables for all the teachers.
+        # * They need to ensure that every class set has a lesson 5x
+        # * a week.
+        # * Apart from that I'm pretty sure the fitness checks will
+        # * sort out the rest of it (I hope)
 
     def crossover(self, otherTimetable: Timetable) -> List[Timetable]:
         pass

@@ -22,12 +22,14 @@ print(mathsLessonOne)
 print(mathsLessonOneTeacher.timetable.print_timetable())
 print(mathsLessonOneTeacher.is_available())
 
-# TODO: Make a timetable for one of the teachers using their current classes
+# TODO: DO THE CREATE GENOME FUNCTION IN genetic_algorithm.py
 
-# TODO: Make a teacher timetables containing subject, period, class, and room for each lesson assuming KS4 don't exist
-# TODO: When doing the task above, make sure that lessons are spread out, and students don't have one lesson P1, one lesson P6
-# TODO: Format the lessons in a nicer way than the console
-# TODO: Add inclusion of KS4 students
+# // TODO: Make a timetable for one of the teachers using their current classes
+
+# // TODO: Make a teacher timetables containing subject, period, class, and room for each lesson assuming KS4 don't exist
+# // TODO: When doing the task above, make sure that lessons are spread out, and students don't have one lesson P1, one lesson P6
+# // TODO: Format the lessons in a nicer way than the console
+# // TODO: Add inclusion of KS4 students
 
 # ? Data required for the program:
 # * Teachers: The subjects they teach, and their preferred room
