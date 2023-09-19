@@ -1,17 +1,14 @@
 from classes.lesson import Lesson
 
 from controllers.room_controller import room_selector
-from controllers.student_controller import student_selector
 from controllers.teacher_controller import teacher_selector
 
 
 mathsLessonOneTeacher = teacher_selector("Maths")
-mathsLessonOneStudents = student_selector("Maths")
 mathsLessonOneRoom = room_selector("Maths", mathsLessonOneTeacher)
 
 mathsLessonOne = Lesson(
     mathsLessonOneTeacher,
-    mathsLessonOneStudents,
     "Ma12B",
     mathsLessonOneRoom,
     "Maths",

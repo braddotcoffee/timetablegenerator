@@ -7,7 +7,7 @@
     "TeacherTwo": {
         "Name": "MathsTeacherTwo",
         "Subjects": ["Maths", "FurtherMaths"],
-        "PreferredRoom": 208
+        "PreferredRoom": 207
     },
     "TeacherThree": {
         "Name": "CompSciTeacherOne",

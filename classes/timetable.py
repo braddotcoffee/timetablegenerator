@@ -31,9 +31,6 @@ test_data = {
     "P4 Subject": ["a", "b", "c", "d", "e"],
     "P4 ClassSet": ["a", "b", "c", "d", "e"],
     "P4 Room": [1, 2, 3, 4, 5],
-    "P5 Subject": ["a", "b", "c", "d", "e"],
-    "P5 ClassSet": ["a", "b", "c", "d", "e"],
-    "P5 Room": [1, 2, 3, 4, 5],
 }
 
 default_data = {
@@ -49,9 +46,6 @@ default_data = {
     "P4 Subject": ["", "", "", "", ""],
     "P4 ClassSet": ["", "", "", "", ""],
     "P4 Room": [0, 0, 0, 0, 0],
-    "P5 Subject": ["", "", "", "", ""],
-    "P5 ClassSet": ["", "", "", "", ""],
-    "P5 Room": [0, 0, 0, 0, 0],
 }
 
 DAYS_TO_TIMETABLE_INDEX = {
@@ -59,7 +53,6 @@ DAYS_TO_TIMETABLE_INDEX = {
     "Tue": 2,
     "Wed": 3,
     "Thu": 4,
-    "Fri": 5,
 }
 
 
@@ -68,7 +61,7 @@ class Timetable:
         self.timetable = pd.DataFrame.from_dict(
             data=data,
             orient="index",
-            columns=["Mon", "Tue", "Wed", "Thu", "Fri"],
+            columns=["Mon", "Tue", "Wed", "Thu"],
         )
 
     def __repr__(self) -> str:
@@ -86,9 +79,3 @@ class Timetable:
         self.timetable.loc[
             f"P{DAYS_TO_TIMETABLE_INDEX[day]} Room", [day]
         ] = room.room_number
-
-
-# from controllers.teacher_controller import TEACHERS
-
-# timetable = Timetable(TEACHERS[0], test_data)
-# print(timetable.timetable.to_string())
