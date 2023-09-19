@@ -4,9 +4,8 @@ from typing import Dict, List
 
 from controllers.data_controller import CLASS_SETS, ROOMS, STUDENTS, TEACHERS
 from classes.room import Room
-from classes.student import Student
 from classes.teacher import Teacher
-from classes.timetable import Timetable
+from classes.timetable import DAYS_TO_TIMETABLE_INDEX, Timetable
 
 # * Notes:
 # * The genes will be the lessons
@@ -27,11 +26,33 @@ class Subjects(Enum):
 
 class Individual:
     def __init__(self, timetable: Timetable) -> None:
-        self.timetable_chromosome = timetable
+        self.timetable_genome = timetable
         self.fitness = self.calc_fitness()
 
     def generate_mutation(self):
-        pass
+        mutation_choice = choice(["ClassSet", "Room"])
+        mutation_day = choice(["Mon", "Tue", "Wed", "Thu"])
+        mutation_period = choice([1, 2, 3, 4, 5, 6])
+        if mutation_choice == "ClassSet":
+            random_set = choice(CLASS_SETS["SetName"])
+            while (
+                self.timetable_genome.get_class_set(mutation_day, mutation_period)
+                != random_set
+            ):
+                self.timetable_genome.set_class_set(
+                    random_set, mutation_day, mutation_period
+                )
+                random_set = choice(CLASS_SETS["SetName"])
+        else:
+            random_room = choice(ROOMS["RoomName"])
+            while (
+                self.timetable_genome.get_room(mutation_day, mutation_period)
+                != random_room
+            ):
+                self.timetable_genome.set_room(
+                    random_room, mutation_day, mutation_period
+                )
+                random_room = choice(ROOMS["RoomName"])
 
     def create_genome(self):
         pass

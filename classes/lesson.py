@@ -24,8 +24,7 @@ class Lesson:
         self.room.available = False
 
         # Sets the timeslots on the teacher's timetable to those of this lesson
-        self.teacher.timetable.set_subject(self.subject, self.day)
-        self.teacher.timetable.set_class_set(self.class_set, self.day)
+        self.teacher.timetable.set_class_set(self.class_set, self.day, self.period)
         self.teacher.timetable.set_room(self.room, self.day)
 
     def __repr__(self) -> str:

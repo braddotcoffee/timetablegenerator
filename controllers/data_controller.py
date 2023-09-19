@@ -10,6 +10,9 @@ with open("data/teachers.json", "r") as read_file:
 with open("data/rooms.json", "r") as read_file:
     room_data = json.load(read_file)
 
+with open("data/class_sets.json", "r") as read_file:
+    class_set_data = json.load(read_file)
+
 TEACHERS = [
     Teacher(v["Name"], v["Subjects"], v["PreferredRoom"]) for v in teacher_data.values()
 ]
@@ -19,4 +22,4 @@ ROOMS = [
     for v in room_data.values()
 ]
 
-CLASS_SETS = ["Ma12B", "Ma12A", "CS12A", "Cs12B", "FM12A"]
+CLASS_SETS = [v for v in class_set_data.values()]

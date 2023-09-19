@@ -1,0 +1,54 @@
+{
+    "Ma12A": {
+        "SetName": "Ma12A",
+        "Subject": "Maths",
+        "YearGroup": 12
+    },
+    "Ma12B": {
+        "SetName": "Ma12B",
+        "Subject": "Maths",
+        "YearGroup": 12
+    },
+    "Ma13A": {
+        "SetName": "Ma13A",
+        "Subject": "Maths",
+        "YearGroup": 13
+    },
+    "Ma13B": {
+        "SetName": "Ma13B",
+        "Subject": "Maths",
+        "YearGroup": 13
+    },
+    "Fm12A": {
+        "SetName": "Fm12A",
+        "Subject": "FurtherMaths",
+        "YearGroup": 12
+    },
+    "Fm13A": {
+        "SetName": "Fm13A",
+        "Subject": "FurtherMaths",
+        "YearGroup": 13
+    },
+    "Cs12A": {
+        "SetName": "Cs12A",
+        "Subject": "ComputerScience",
+        "YearGroup": 12
+    },
+    "Cs12B": {
+        "SetName": "Cs12B",
+        "Subject": "ComputerScience",
+        "YearGroup": 12
+    },
+    "Cs13A": {
+        "SetName": "Cs13A",
+        "Subject": "ComputerScience",
+        "YearGroup": 13
+    },
+    "Cs13B": {
+        "SetName": "Cs13B",
+        "Subject": "ComputerScience",
+        "YearGroup": 13
+    }
+    
+    
+}

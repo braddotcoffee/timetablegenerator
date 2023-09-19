@@ -19,7 +19,7 @@ mathsLessonOne = Lesson(
 computerScienceTeacher = teacher_selector("ComputerScience")
 
 print(mathsLessonOne)
-print(mathsLessonOneTeacher.timetable)
+print(mathsLessonOneTeacher.timetable.print_timetable())
 print(mathsLessonOneTeacher.is_available())
 
 # TODO: Make a timetable for one of the teachers using their current classes
