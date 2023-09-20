@@ -29,6 +29,10 @@ test_data = {
     "P3 Room": [1, 2, 3, 4],
     "P4 ClassSet": ["a", "b", "c", "d"],
     "P4 Room": [1, 2, 3, 4],
+    "P5 ClassSet": ["a", "b", "c", "d"],
+    "P5 Room": [1, 2, 3, 4],
+    "P6 ClassSet": ["a", "b", "c", "d"],
+    "P6 Room": [1, 2, 3, 4],
 }
 
 default_data = {
@@ -40,13 +44,17 @@ default_data = {
     "P3 Room": [0, 0, 0, 0],
     "P4 ClassSet": ["", "", "", ""],
     "P4 Room": [0, 0, 0, 0],
+    "P5 ClassSet": ["", "", "", ""],
+    "P5 Room": [0, 0, 0, 0],
+    "P6 ClassSet": ["", "", "", ""],
+    "P6 Room": [0, 0, 0, 0],
 }
 
 DAYS_TO_TIMETABLE_INDEX = {
-    "Mon": 1,
-    "Tue": 2,
-    "Wed": 3,
-    "Thu": 4,
+    "Mon": 0,
+    "Tue": 1,
+    "Wed": 2,
+    "Thu": 3,
 }
 
 
@@ -58,19 +66,17 @@ class Timetable:
         self.timetable = timetable
 
     def get_class_set(self, day, period):
-        return self.timetable[f"{period} ClassSet"][DAYS_TO_TIMETABLE_INDEX[day] - 1]
+        return self.timetable[f"P{period} ClassSet"][DAYS_TO_TIMETABLE_INDEX[day]]
 
     def get_room(self, day, period):
-        return self.timetable[f"{period} Room"][DAYS_TO_TIMETABLE_INDEX[day] - 1]
+        return self.timetable[f"P{period} Room"][DAYS_TO_TIMETABLE_INDEX[day]]
 
     def set_class_set(self, classSet, day, period):
-        self.timetable[f"P{period} ClassSet"][
-            DAYS_TO_TIMETABLE_INDEX[day] - 1
-        ] = classSet
+        self.timetable[f"P{period} ClassSet"][DAYS_TO_TIMETABLE_INDEX[day]] = classSet
 
-    def set_room(self, room: Room, day):
-        self.timetable[f"P{DAYS_TO_TIMETABLE_INDEX[day]} Room"][
-            DAYS_TO_TIMETABLE_INDEX[day] - 1
+    def set_room(self, period: int, room: Room, day):
+        self.timetable[f"P{period} Room"][
+            DAYS_TO_TIMETABLE_INDEX[day]
         ] = room.room_number
 
     def print_timetable(self):
@@ -78,3 +84,19 @@ class Timetable:
             data=self.timetable, orient="index", columns=["Mon", "Tue", "Wed", "Thur"]
         )
         print(timetable.to_string())
+
+    def get_available_lessons(self):
+        available_lessons = []
+        lessons = [
+            [i for i in self.timetable[x] if isinstance(i, str)]
+            for x in self.timetable.keys()
+        ]
+        for lesson in lessons:
+            if len(lesson) == 0:
+                lessons.remove(lesson)
+
+        for i, x in enumerate(lessons):
+            if "" in x:
+                available_lessons.append((i, x.index("")))
+
+        return available_lessons

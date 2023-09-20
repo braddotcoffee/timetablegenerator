@@ -4,8 +4,6 @@ from typing import Dict, List
 
 from controllers.data_controller import CLASS_SETS, ROOMS, TEACHERS
 from controllers.room_controller import room_selector
-from controllers.teacher_controller import teacher_selector
-from classes.lesson import Lesson
 from classes.timetable import DAYS_TO_TIMETABLE_INDEX, default_data, Timetable
 
 # * Notes:
@@ -25,6 +23,14 @@ class Subjects(Enum):
     IT = "IT"
 
 
+def create_genome_check_timetable(lessons: List[List[str]]) -> bool:
+    for period in lessons:
+        for day in period:
+            if day != "":
+                return True
+    return False
+
+
 class Individual:
     """This is a whole working timetable of all the teachers"""
 
@@ -36,25 +42,25 @@ class Individual:
         mutation_day = choice(["Mon", "Tue", "Wed", "Thu"])
         mutation_period = choice([1, 2, 3, 4, 5, 6])
         if mutation_choice == "ClassSet":
-            random_set = choice(CLASS_SETS["SetName"])
+            random_set = None
             while (
                 self.timetable_genome.get_class_set(mutation_day, mutation_period)
                 != random_set
             ):
+                random_set = choice(CLASS_SETS["SetName"])
                 self.timetable_genome.set_class_set(
                     random_set, mutation_day, mutation_period
                 )
-                random_set = choice(CLASS_SETS["SetName"])
         else:
-            random_room = choice(ROOMS["RoomName"])
+            random_room = None
             while (
                 self.timetable_genome.get_room(mutation_day, mutation_period)
                 != random_room
             ):
+                random_room = choice(ROOMS["RoomName"])
                 self.timetable_genome.set_room(
                     random_room, mutation_day, mutation_period
                 )
-                random_room = choice(ROOMS["RoomName"])
 
     def create_genome(self) -> Timetable:
         """This function creates the randomly generated timetable, gl with this"""
@@ -66,27 +72,52 @@ class Individual:
         # * Apart from that I'm pretty sure the fitness checks will
         # * sort out the rest of it (I hope)
 
-        list_of_teacher_timetables: List[Timetable] = []
+        teacher_timetables_dict = {}
+        for teacher in TEACHERS:
+            teacher_timetables_dict.update(
+                teacher.get_name(), Timetable(teacher, default_data)
+            )
 
         list_of_available_class_sets = [
             class_set for class_set in CLASS_SETS if class_set["LessonsInWeek"] != 5
         ]
 
-        # Loops through all the teachers, creating timetables for each one and appends them to the list_of_teacher_timetable
         while list_of_available_class_sets:
-            for index, teacher in enumerate(TEACHERS):
+            # Loops through all the teachers, creating timetables for each one and appends them to the list_of_teacher_timetable
+            for teacher in TEACHERS:
                 # Generates a random class
-                class_set = choice(list_of_available_class_sets)
+
                 # Generates a new class set if the teacher does not teach the subject
+                # TODO: FIX THIS
                 while class_set["Subject"] not in teacher.get_subjects():
                     class_set = choice(list_of_available_class_sets)
+
                 # Checks if the teacher teaches that subject
                 if class_set["Subject"] in teacher.get_subjects():
-                    subject = class_set["Subject"]
-                    room = room_selector(subject, teacher)
-                    # Add the lesson onto the teacher's timetable
+                    # Sets the room for the class
+                    room = room_selector(class_set["Subject"], teacher)
 
-                    new_lesson = Lesson(teacher, class_set, room, class_set["Subject"])
+                    # Gets the timetable of this teacher
+                    teacher_timetable = teacher_timetables_dict[teacher.get_name()]
+
+                    # Gets the available lessons of this teacher
+                    available_lessons = teacher_timetable.get_available_lessons()
+
+                    # While the teacher has at least one available lesson (this is ok because it
+                    # means that every other teacher must have roughly the same amount of lessons)
+                    while len(available_lessons) != 0:
+                        # Choose a random lesson slot (period and day)
+                        random_lesson = choice(available_lessons)
+
+                        # Sets the ClassSet on the teacher's timetable
+                        teacher_timetable.set_class_set(
+                            class_set, random_lesson[0] + 1, random_lesson[1]
+                        )
+
+                        # Sets the room on the teacher's timetable
+                        teacher_timetable.set_room(
+                            room, random_lesson[0] + 1, random_lesson[1]
+                        )
 
     def crossover(self, otherTimetable: Timetable) -> List[Timetable]:
         pass
