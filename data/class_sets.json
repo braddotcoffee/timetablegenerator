@@ -1,53 +1,63 @@
 {
-    "Ma12A": {
-        "SetName": "Ma12A",
+    "12MaA": {
+        "SetName": "12MaA",
         "Subject": "Maths",
-        "YearGroup": 12
+        "YearGroup": 12,
+        "LessonsInWeek": 0
     },
-    "Ma12B": {
-        "SetName": "Ma12B",
+    "12MaB": {
+        "SetName": "12MaB",
         "Subject": "Maths",
-        "YearGroup": 12
+        "YearGroup": 12,
+        "LessonsInWeek": 0
     },
-    "Ma13A": {
-        "SetName": "Ma13A",
+    "13MaA": {
+        "SetName": "13MaA",
         "Subject": "Maths",
-        "YearGroup": 13
+        "YearGroup": 13,
+        "LessonsInWeek": 0
     },
-    "Ma13B": {
-        "SetName": "Ma13B",
+    "13MaB": {
+        "SetName": "13MaB",
         "Subject": "Maths",
-        "YearGroup": 13
+        "YearGroup": 13,
+        "LessonsInWeek": 0
     },
-    "Fm12A": {
-        "SetName": "Fm12A",
+    "12FmA": {
+        "SetName": "12FmA",
         "Subject": "FurtherMaths",
-        "YearGroup": 12
+        "YearGroup": 12,
+        "LessonsInWeek": 0
     },
-    "Fm13A": {
-        "SetName": "Fm13A",
+    "13FmA": {
+        "SetName": "13FmA",
         "Subject": "FurtherMaths",
-        "YearGroup": 13
+        "YearGroup": 13,
+        "LessonsInWeek": 0
     },
-    "Cs12A": {
-        "SetName": "Cs12A",
+    "12CsA": {
+        "SetName": "12CsA",
         "Subject": "ComputerScience",
-        "YearGroup": 12
+        "YearGroup": 12,
+        "LessonsInWeek": 0
     },
-    "Cs12B": {
-        "SetName": "Cs12B",
+    "12CsB": {
+        "SetName": "12CsB",
         "Subject": "ComputerScience",
-        "YearGroup": 12
+        "YearGroup": 12,
+        "LessonsInWeek": 0
     },
-    "Cs13A": {
-        "SetName": "Cs13A",
+    "13CsA": {
+        "SetName": "13CsA",
         "Subject": "ComputerScience",
-        "YearGroup": 13
+        "YearGroup": 13,
+        "LessonsInWeek": 0
     },
-    "Cs13B": {
-        "SetName": "Cs13B",
+    "13CsB": {
+        "SetName": "13CsB",
         "Subject": "ComputerScience",
-        "YearGroup": 13
+        "YearGroup": 13,
+        "LessonsInWeek": 0
     }
     
     

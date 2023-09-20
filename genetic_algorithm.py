@@ -2,10 +2,11 @@ from enum import Enum
 from random import choice, randint
 from typing import Dict, List
 
-from controllers.data_controller import CLASS_SETS, ROOMS, STUDENTS, TEACHERS
-from classes.room import Room
-from classes.teacher import Teacher
-from classes.timetable import DAYS_TO_TIMETABLE_INDEX, Timetable
+from controllers.data_controller import CLASS_SETS, ROOMS, TEACHERS
+from controllers.room_controller import room_selector
+from controllers.teacher_controller import teacher_selector
+from classes.lesson import Lesson
+from classes.timetable import DAYS_TO_TIMETABLE_INDEX, default_data, Timetable
 
 # * Notes:
 # * The genes will be the lessons
@@ -27,8 +28,7 @@ class Subjects(Enum):
 class Individual:
     """This is a whole working timetable of all the teachers"""
 
-    def __init__(self, timetable: Timetable) -> None:
-        self.timetable_genome = timetable
+    def __init__(self) -> None:
         self.fitness = self.calc_fitness()
 
     def generate_mutation(self):
@@ -58,7 +58,6 @@ class Individual:
 
     def create_genome(self) -> Timetable:
         """This function creates the randomly generated timetable, gl with this"""
-        # TODO: THIS
         # * Technically I can make it as broken as I want, because
         # * it will fix itself with the fitness checks.
         # * So I just need to make timetables for all the teachers.
@@ -66,6 +65,28 @@ class Individual:
         # * a week.
         # * Apart from that I'm pretty sure the fitness checks will
         # * sort out the rest of it (I hope)
+
+        list_of_teacher_timetables: List[Timetable] = []
+
+        list_of_available_class_sets = [
+            class_set for class_set in CLASS_SETS if class_set["LessonsInWeek"] != 5
+        ]
+
+        # Loops through all the teachers, creating timetables for each one and appends them to the list_of_teacher_timetable
+        while list_of_available_class_sets:
+            for index, teacher in enumerate(TEACHERS):
+                # Generates a random class
+                class_set = choice(list_of_available_class_sets)
+                # Generates a new class set if the teacher does not teach the subject
+                while class_set["Subject"] not in teacher.get_subjects():
+                    class_set = choice(list_of_available_class_sets)
+                # Checks if the teacher teaches that subject
+                if class_set["Subject"] in teacher.get_subjects():
+                    subject = class_set["Subject"]
+                    room = room_selector(subject, teacher)
+                    # Add the lesson onto the teacher's timetable
+
+                    new_lesson = Lesson(teacher, class_set, room, class_set["Subject"])
 
     def crossover(self, otherTimetable: Timetable) -> List[Timetable]:
         pass
@@ -77,3 +98,7 @@ class Individual:
 class GeneticAlgorithm:
     def __init__(self, timetable: Dict[str, List[str | int]]) -> None:
         self.timetable = timetable
+
+
+individual = Individual()
+individual.create_genome()

@@ -6,6 +6,8 @@ from classes.room import Room
 import sys
 import os
 
+from classes.teacher import Teacher
+
 #! DO NOT TOUCH THE WEIRD SYS PATH IT WORKS SO KEEP IT
 myDir = os.getcwd()
 sys.path.append(myDir)
@@ -49,7 +51,10 @@ DAYS_TO_TIMETABLE_INDEX = {
 
 
 class Timetable:
-    def __init__(self, timetable: dict[str, List[str | int]] = default_data) -> None:
+    def __init__(
+        self, teacher: Teacher, timetable: dict[str, List[str | int]] = default_data
+    ) -> None:
+        self.teacher = teacher
         self.timetable = timetable
 
     def get_class_set(self, day, period):
