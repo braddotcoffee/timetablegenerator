@@ -57,6 +57,13 @@ DAYS_TO_TIMETABLE_INDEX = {
     "Thu": 3,
 }
 
+TIMETABLE_INDEX_TO_DAYS = {
+    0: "Mon",
+    1: "Tue",
+    2: "Wed",
+    3: "Thu",
+}
+
 
 class Timetable:
     def __init__(
@@ -71,13 +78,11 @@ class Timetable:
     def get_room(self, day, period):
         return self.timetable[f"P{period} Room"][DAYS_TO_TIMETABLE_INDEX[day]]
 
-    def set_class_set(self, classSet, day, period):
-        self.timetable[f"P{period} ClassSet"][DAYS_TO_TIMETABLE_INDEX[day]] = classSet
+    def set_class_set(self, classSet: str, day: int, period: int):
+        self.timetable[f"P{period} ClassSet"][day] = classSet
 
-    def set_room(self, period: int, room: Room, day):
-        self.timetable[f"P{period} Room"][
-            DAYS_TO_TIMETABLE_INDEX[day]
-        ] = room.room_number
+    def set_room(self, room: Room, period: int, day: int):
+        self.timetable[f"P{period} Room"][day] = room
 
     def print_timetable(self):
         timetable = pd.DataFrame.from_dict(
@@ -97,6 +102,6 @@ class Timetable:
 
         for i, x in enumerate(lessons):
             if "" in x:
-                available_lessons.append((i, x.index("")))
+                available_lessons.append((i + 1, x.index("")))
 
         return available_lessons
