@@ -72,6 +72,12 @@ class Timetable:
         self.teacher = teacher
         self.timetable = timetable
 
+    def __repr__(self):
+        timetable = pd.DataFrame.from_dict(
+            data=self.timetable, orient="index", columns=["Mon", "Tue", "Wed", "Thur"]
+        )
+        return timetable.to_string()
+
     def get_class_set(self, day, period):
         return self.timetable[f"P{period} ClassSet"][DAYS_TO_TIMETABLE_INDEX[day]]
 
@@ -81,14 +87,8 @@ class Timetable:
     def set_class_set(self, classSet: str, day: int, period: int):
         self.timetable[f"P{period} ClassSet"][day] = classSet
 
-    def set_room(self, room: Room, period: int, day: int):
+    def set_room(self, room: int, period: int, day: int):
         self.timetable[f"P{period} Room"][day] = room
-
-    def print_timetable(self):
-        timetable = pd.DataFrame.from_dict(
-            data=self.timetable, orient="index", columns=["Mon", "Tue", "Wed", "Thur"]
-        )
-        print(timetable.to_string())
 
     def get_available_lessons(self):
         available_lessons = []
@@ -101,7 +101,14 @@ class Timetable:
                 lessons.remove(lesson)
 
         for i, x in enumerate(lessons):
-            if "" in x:
-                available_lessons.append((i + 1, x.index("")))
+            for j, y in enumerate(x):
+                if "" in y:
+                    print((i + 1, y.index("")))
+                    available_lessons.append((i + 1, y.index("")))
+
+        for i in range(len(lessons)):
+            for j in range(len(lessons[i])):
+                if lessons[i][j] == "":
+                    print((i + 1, lessons[i][j]))
 
         return available_lessons

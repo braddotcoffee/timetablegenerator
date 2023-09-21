@@ -12,3 +12,6 @@ class Room:
 
     def __repr__(self) -> str:
         return f"Room: room_number={self.room_number}, available={self.available}, subjects={self.subjects}, capacity={self.capacity}"
+
+    def get_room_number(self):
+        return self.room_number

@@ -87,9 +87,15 @@ class Individual:
         while list_of_available_class_sets:
             # Loops through all the teachers, creating timetables for each one and appends them to the list_of_teacher_timetable
             for teacher in TEACHERS:
-                # Generates a random class
+                for class_set_x in list_of_available_class_sets:
+                    if class_set_x["LessonsInWeek"] == 5:
+                        list_of_available_class_sets.remove(class_set_x)
 
-                class_set = choice(list_of_available_class_sets)
+                try:
+                    class_set = choice(list_of_available_class_sets)
+                except:
+                    print("No more classes")
+                    break
                 # Generates a new class set if the teacher does not teach the subject
                 if class_set["Subject"] in teacher.get_subjects():
                     while class_set["Subject"] not in teacher.get_subjects():
@@ -117,15 +123,21 @@ class Individual:
                         period = random_lesson[0]
 
                         # Sets the ClassSet on the teacher's timetable
-                        teacher_timetable.set_class_set(class_set, day, period)
+                        set_name = class_set
+                        print(class_set["SetName"])
+                        teacher_timetable.set_class_set(set_name, day, period)
 
                         # Sets the room on the teacher's timetable
-                        teacher_timetable.set_room(room, period, day)
+                        teacher_timetable.set_room(room.get_room_number(), period, day)
                         teacher_timetables_dict[teacher.get_name()] = teacher_timetable
-                        continue
+                        class_set["LessonsInWeek"] += 1
+                        break
+                    # TODO: FIX THE AVAILABLE TEACHERS FUNCTION IN TIMETABLE
 
-            teachers_generated_counter += 1
-            print(f"Teachers generated: {teachers_generated_counter}")
+                teachers_generated_counter += 1
+                print(teachers_generated_counter)
+
+        print(teacher_timetables_dict)
         return teacher_timetables_dict
 
     def crossover(self, otherTimetable: Timetable) -> List[Timetable]:

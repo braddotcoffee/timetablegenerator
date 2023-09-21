@@ -18,45 +18,5 @@
         "Name": "CompSciTeacherTwo",
         "Subjects": ["ComputerScience", "IT"],
         "PreferredRoom": 308
-    },
-    "TeacherFive": {
-        "Name": "ITTeacherOne",
-        "Subjects": ["IT"],
-        "PreferredRoom": null
-    },
-    "TeacherSix": {
-        "Name": "BusinessTeacherOne",
-        "Subjects": ["Business"],
-        "PreferredRoom": 149
-    },
-    "TeacherSeven": {
-        "Name": "EngineeringTeacherOne",
-        "Subjects": ["Engineering"],
-        "PreferredRoom": null
-    },
-    "TeacherEight": {
-        "Name": "PhysicsTeacherOne",
-        "Subjects": ["Physics"],
-        "PreferredRoom": null
-    },
-    "TeacherNine": {
-        "Name": "PhysicsTeacherOne",
-        "Subjects": ["Physics"],
-        "PreferredRoom": null
-    },
-    "TeacherTen": {
-        "Name": "ChemistryTeacherOne",
-        "Subjects": ["Chemistry"],
-        "PreferredRoom": null
-    },
-    "TeacherEleven": {
-        "Name": "BiologyTeacherOne",
-        "Subjects": ["Biology"],
-        "PreferredRoom": null
-    },
-    "TeacherTwelve": {
-        "Name": "PsychologyTeacherOne",
-        "Subjects": ["Psychology"],
-        "PreferredRoom": null
     }
 }
