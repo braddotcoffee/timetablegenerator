@@ -6,7 +6,7 @@ from classes.room import Room
 import sys
 import os
 
-from classes.teacher import Teacher
+from classes.teacher import DEFAULT_DATA, Teacher
 
 #! DO NOT TOUCH THE WEIRD SYS PATH IT WORKS SO KEEP IT
 myDir = os.getcwd()
@@ -20,35 +20,6 @@ a = str(path.parent.absolute())
 
 # * data should be in the format displayed below:
 
-test_data = {
-    "P1 ClassSet": ["a", "b", "c", "d"],
-    "P1 Room": [1, 2, 3, 4],
-    "P2 ClassSet": ["a", "b", "c", "d"],
-    "P2 Room": [1, 2, 3, 4],
-    "P3 ClassSet": ["a", "b", "c", "d"],
-    "P3 Room": [1, 2, 3, 4],
-    "P4 ClassSet": ["a", "b", "c", "d"],
-    "P4 Room": [1, 2, 3, 4],
-    "P5 ClassSet": ["a", "b", "c", "d"],
-    "P5 Room": [1, 2, 3, 4],
-    "P6 ClassSet": ["a", "b", "c", "d"],
-    "P6 Room": [1, 2, 3, 4],
-}
-
-default_data = {
-    "P1 ClassSet": ["", "", "", ""],
-    "P1 Room": [0, 0, 0, 0],
-    "P2 ClassSet": ["", "", "", ""],
-    "P2 Room": [0, 0, 0, 0],
-    "P3 ClassSet": ["", "", "", ""],
-    "P3 Room": [0, 0, 0, 0],
-    "P4 ClassSet": ["", "", "", ""],
-    "P4 Room": [0, 0, 0, 0],
-    "P5 ClassSet": ["", "", "", ""],
-    "P5 Room": [0, 0, 0, 0],
-    "P6 ClassSet": ["", "", "", ""],
-    "P6 Room": [0, 0, 0, 0],
-}
 
 DAYS_TO_TIMETABLE_INDEX = {
     "Mon": 0,
@@ -67,7 +38,7 @@ TIMETABLE_INDEX_TO_DAYS = {
 
 class Timetable:
     def __init__(
-        self, teacher: Teacher, timetable: dict[str, List[str | int]] = default_data
+        self, teacher: Teacher, timetable: dict[str, List[str | int]] = DEFAULT_DATA
     ) -> None:
         self.teacher = teacher
         self.timetable = timetable
@@ -85,12 +56,23 @@ class Timetable:
         return self.timetable[f"P{period} Room"][DAYS_TO_TIMETABLE_INDEX[day]]
 
     def set_class_set(self, classSet: str, day: int, period: int):
-        self.timetable[f"P{period} ClassSet"][day] = classSet
+        try:
+            self.timetable[f"P{period} ClassSet"][day] = classSet
+        except:
+            self.timetable[f"P{period} ClassSet"][day - 1] = classSet
+            print("IndexError: list assignment index out of range")
+            print(f"Period: {period}, Day: {day}")
 
     def set_room(self, room: int, period: int, day: int):
-        self.timetable[f"P{period} Room"][day] = room
+        try:
+            self.timetable[f"P{period} Room"][day] = room
+        except:
+            self.timetable[f"P{period} Room"][day - 1] = room
+            print("IndexError: list assignment index out of range")
+            print(f"Period: {period}, Day: {day}")
 
     def get_available_lessons(self):
+        # ! WORKS FINE DO NOT TOUCH
         available_lessons = []
         lessons = [
             [i for i in self.timetable[x] if isinstance(i, str)]
@@ -100,15 +82,12 @@ class Timetable:
             if len(lesson) == 0:
                 lessons.remove(lesson)
 
-        for i, x in enumerate(lessons):
-            for j, y in enumerate(x):
-                if "" in y:
-                    print((i + 1, y.index("")))
-                    available_lessons.append((i + 1, y.index("")))
-
-        for i in range(len(lessons)):
-            for j in range(len(lessons[i])):
-                if lessons[i][j] == "":
-                    print((i + 1, lessons[i][j]))
+        counter = 1
+        for period in lessons:
+            for i in range(len(period)):
+                if period[i] == "":
+                    available_lessons.append((counter, i + 1))
+                    print(counter, i)
+            counter += 1
 
         return available_lessons
