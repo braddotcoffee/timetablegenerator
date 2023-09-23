@@ -4,7 +4,8 @@ from typing import Dict, List
 
 from controllers.data_controller import CLASS_SETS, ROOMS, TEACHERS
 from controllers.room_controller import room_selector
-from classes.timetable import DAYS_TO_TIMETABLE_INDEX, default_data, Timetable
+from classes.timetable import DAYS_TO_TIMETABLE_INDEX, Timetable
+from classes.teacher import DEFAULT_DATA
 
 # * Notes:
 # * The genes will be the lessons
@@ -29,6 +30,11 @@ def create_genome_check_timetable(lessons: List[List[str]]) -> bool:
             if day != "":
                 return True
     return False
+
+
+def print_dict(dictionary):
+    for key, value in dictionary.items():
+        print(key, value)
 
 
 class Individual:
@@ -75,7 +81,7 @@ class Individual:
         teacher_timetables_dict = {}
         for teacher in TEACHERS:
             teacher_timetables_dict.update(
-                {teacher.get_name(): Timetable(teacher, default_data)}
+                {teacher.get_name(): Timetable(teacher, DEFAULT_DATA)}
             )
 
         list_of_available_class_sets = [
@@ -125,19 +131,28 @@ class Individual:
                         # Sets the ClassSet on the teacher's timetable
                         set_name = class_set
                         print(class_set["SetName"])
-                        teacher_timetable.set_class_set(set_name, day, period)
+                        teacher_timetable.set_class_set(
+                            set_name["SetName"], day, period
+                        )
 
                         # Sets the room on the teacher's timetable
                         teacher_timetable.set_room(room.get_room_number(), period, day)
                         teacher_timetables_dict[teacher.get_name()] = teacher_timetable
                         class_set["LessonsInWeek"] += 1
                         break
-                    # TODO: FIX THE AVAILABLE TEACHERS FUNCTION IN TIMETABLE
 
                 teachers_generated_counter += 1
                 print(teachers_generated_counter)
 
-        print(teacher_timetables_dict)
+        print(list(teacher_timetables_dict)[0])
+        print_dict(teacher_timetables_dict[list(teacher_timetables_dict)[0]].timetable)
+        print(list(teacher_timetables_dict)[1])
+        print_dict(teacher_timetables_dict[list(teacher_timetables_dict)[1]].timetable)
+        print(list(teacher_timetables_dict)[2])
+        print_dict(teacher_timetables_dict[list(teacher_timetables_dict)[2]].timetable)
+        print(list(teacher_timetables_dict)[3])
+        print_dict(teacher_timetables_dict[list(teacher_timetables_dict)[3]].timetable)
+
         return teacher_timetables_dict
 
     def crossover(self, otherTimetable: Timetable) -> List[Timetable]:

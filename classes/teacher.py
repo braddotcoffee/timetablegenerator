@@ -1,6 +1,22 @@
 from typing import List
 
 
+DEFAULT_DATA = {
+    "P1 ClassSet": ["", "", "", ""],
+    "P1 Room": [0, 0, 0, 0],
+    "P2 ClassSet": ["", "", "", ""],
+    "P2 Room": [0, 0, 0, 0],
+    "P3 ClassSet": ["", "", "", ""],
+    "P3 Room": [0, 0, 0, 0],
+    "P4 ClassSet": ["", "", "", ""],
+    "P4 Room": [0, 0, 0, 0],
+    "P5 ClassSet": ["", "", "", ""],
+    "P5 Room": [0, 0, 0, 0],
+    "P6 ClassSet": ["", "", "", ""],
+    "P6 Room": [0, 0, 0, 0],
+}
+
+
 class Teacher:
     def __init__(
         self,
