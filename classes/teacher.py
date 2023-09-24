@@ -1,37 +1,75 @@
-from typing import List
+from copy import deepcopy
+import pandas as pd
+from typing import List, Dict
 
+from classes.timetable import Timetable
 
 DEFAULT_DATA = {
-    "P1 ClassSet": ["", "", "", ""],
-    "P1 Room": [0, 0, 0, 0],
-    "P2 ClassSet": ["", "", "", ""],
-    "P2 Room": [0, 0, 0, 0],
-    "P3 ClassSet": ["", "", "", ""],
-    "P3 Room": [0, 0, 0, 0],
-    "P4 ClassSet": ["", "", "", ""],
-    "P4 Room": [0, 0, 0, 0],
-    "P5 ClassSet": ["", "", "", ""],
-    "P5 Room": [0, 0, 0, 0],
-    "P6 ClassSet": ["", "", "", ""],
-    "P6 Room": [0, 0, 0, 0],
+    "Mon": {
+        "P1": {"Class": "", "Room": 0},
+        "P2": {"Class": "", "Room": 0},
+        "P3": {"Class": "", "Room": 0},
+        "P4": {"Class": "", "Room": 0},
+        "P5": {"Class": "", "Room": 0},
+        "P6": {"Class": "", "Room": 0},
+    },
+    "Tue": {
+        "P1": {"Class": "", "Room": 0},
+        "P2": {"Class": "", "Room": 0},
+        "P3": {"Class": "", "Room": 0},
+        "P4": {"Class": "", "Room": 0},
+        "P5": {"Class": "", "Room": 0},
+        "P6": {"Class": "", "Room": 0},
+    },
+    "Wed": {
+        "P1": {"Class": "", "Room": 0},
+        "P2": {"Class": "", "Room": 0},
+        "P3": {"Class": "", "Room": 0},
+        "P4": {"Class": "", "Room": 0},
+        "P5": {"Class": "", "Room": 0},
+        "P6": {"Class": "", "Room": 0},
+    },
+    "Thu": {
+        "P1": {"Class": "", "Room": 0},
+        "P2": {"Class": "", "Room": 0},
+        "P3": {"Class": "", "Room": 0},
+        "P4": {"Class": "", "Room": 0},
+        "P5": {"Class": "", "Room": 0},
+        "P6": {"Class": "", "Room": 0},
+    },
 }
 
 
-class Teacher:
+class Teacher(Timetable):
     def __init__(
         self,
         name: str,
         subjects: List[str],
         room: int,
-        available: bool = True,
+        timetable: Dict[str, Dict[str, Dict[str, str | int]]] = deepcopy(DEFAULT_DATA),
     ) -> None:
+        super().__init__(timetable)
         self.name = name
         self.subjects = subjects
         self.pref_room = room
-        self.available = available
+        self.timetable = timetable
 
     def __repr__(self) -> str:
-        return f"Teacher: name={self.name}, subjects={self.subjects}, pref_room={self.pref_room}, available={self.available}"
+        # ! WORKS DO NOT TOUCH
+        rows = []
+        for day, periods in self.timetable.items():
+            for period, data in periods.items():
+                rows.extend(
+                    [
+                        (day, f"{period} Class", data["Class"]),
+                        (day, f"{period} Room", data["Room"]),
+                    ]
+                )
+        df = pd.DataFrame(rows, columns=["Day", "Period", "Data"])
+        df = df.pivot(index="Period", columns="Day", values="Data")
+        df.reset_index(drop=True)
+
+        return f"Teacher: name={self.name}, subjects={self.subjects}, pref_room={self.pref_room} timetable=\n{df.to_string()}"
 
     # Getters
 
@@ -43,9 +81,6 @@ class Teacher:
 
     def get_pref_room(self):
         return self.pref_room
-
-    def is_available(self):
-        return self.available
 
     # Setters
 

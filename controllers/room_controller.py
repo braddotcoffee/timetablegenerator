@@ -1,8 +1,9 @@
 from classes.teacher import Teacher
+from classes.room import Room
 from controllers.data_controller import ROOMS
 
 
-def room_selector(subject: str, teacher: Teacher) -> int | None:
+def room_selector(subject: str, teacher: Teacher) -> Room | None:
     """Selects a suitable room for a lesson
 
     Args:
@@ -18,7 +19,7 @@ def room_selector(subject: str, teacher: Teacher) -> int | None:
     # Searches each room in to check if it is the teachers preferred room, it is available, and if the subject can be taught in the room
     for room in ROOMS:
         if (
-            teacher.get_pref_room() == room.room_number
+            teacher.pref_room == room.room_number
             and room.available
             and subject in room.subjects
         ):
