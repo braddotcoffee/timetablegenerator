@@ -95,9 +95,10 @@ class Individual:
                     # Sets the room for the class
                     room = room_selector(class_set["Subject"], teacher)
 
+                    teacher_timetable = teacher.timetable
+
                     # ! WORKS
-                    available_lessons = teacher.get_available_lessons()
-                    print(available_lessons)
+                    available_lessons = teacher_timetable.get_available_lessons()
 
                     # If the teacher has at least one available lesson (this is ok because it
                     # means that every other teacher must have roughly the same amount of lessons)
@@ -109,10 +110,12 @@ class Individual:
                         period = random_lesson[1]
 
                         # Sets the ClassSet on the teacher's timetable
-                        teacher.set_class_set(class_set["SetName"], day, period)
+                        teacher_timetable.set_class_set(
+                            class_set["SetName"], day, period
+                        )
 
                         # Sets the room on the teacher's timetable
-                        teacher.set_room(room.get_room_number(), day, period)
+                        teacher_timetable.set_room(room.get_room_number(), day, period)
 
                         class_set["LessonsInWeek"] += 1
                         continue
@@ -130,10 +133,6 @@ class Individual:
         pass
 
 
-class GeneticAlgorithm:
-    def __init__(self, timetable: Dict[str, List[str | int]]) -> None:
-        self.timetable = timetable
-
-
-individual = Individual()
-individual.create_genome()
+if __name__ == "__main__":
+    individual = Individual()
+    individual.create_genome()

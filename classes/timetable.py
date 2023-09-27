@@ -1,12 +1,46 @@
 from typing import Dict
 
+DEFAULT_DATA = {
+    "Mon": {
+        "P1": {"Class": "", "Room": 0},
+        "P2": {"Class": "", "Room": 0},
+        "P3": {"Class": "", "Room": 0},
+        "P4": {"Class": "", "Room": 0},
+        "P5": {"Class": "", "Room": 0},
+        "P6": {"Class": "", "Room": 0},
+    },
+    "Tue": {
+        "P1": {"Class": "", "Room": 0},
+        "P2": {"Class": "", "Room": 0},
+        "P3": {"Class": "", "Room": 0},
+        "P4": {"Class": "", "Room": 0},
+        "P5": {"Class": "", "Room": 0},
+        "P6": {"Class": "", "Room": 0},
+    },
+    "Wed": {
+        "P1": {"Class": "", "Room": 0},
+        "P2": {"Class": "", "Room": 0},
+        "P3": {"Class": "", "Room": 0},
+        "P4": {"Class": "", "Room": 0},
+        "P5": {"Class": "", "Room": 0},
+        "P6": {"Class": "", "Room": 0},
+    },
+    "Thu": {
+        "P1": {"Class": "", "Room": 0},
+        "P2": {"Class": "", "Room": 0},
+        "P3": {"Class": "", "Room": 0},
+        "P4": {"Class": "", "Room": 0},
+        "P5": {"Class": "", "Room": 0},
+        "P6": {"Class": "", "Room": 0},
+    },
+}
+
 
 class Timetable:
     def __init__(
         self,
-        timetable: Dict[str, Dict[str, Dict[str, str | int]]],
     ) -> None:
-        self.timetable = timetable
+        self.timetable = DEFAULT_DATA
 
     def get_class_set(self, day, period):
         return self.timetable[day][period]["Class"]
@@ -17,16 +51,16 @@ class Timetable:
     def set_class_set(self, classSet: str, day: int, period: int):
         try:
             self.timetable[day][period]["Class"] = classSet
-        except:
-            self.timetable[day][period]["Class"] = classSet
+        except IndexError:
+            # self.timetable[day][period]["Class"] = classSet
             print("IndexError: list assignment index out of range")
             print(f"Period: {period}, Day: {day}")
 
     def set_room(self, room: int, day: int, period: int):
         try:
             self.timetable[day][period]["Room"] = room
-        except:
-            self.timetable[day][period]["Room"] = room
+        except IndexError:
+            # self.timetable[day][period]["Room"] = room
             print("IndexError: list assignment index out of range")
             print(f"Period: {period}, Day: {day}")
 
