@@ -1,5 +1,3 @@
-from classes.lesson import Lesson
-
 from controllers.room_controller import room_selector
 from controllers.teacher_controller import teacher_selector
 
@@ -7,20 +5,7 @@ from controllers.teacher_controller import teacher_selector
 mathsLessonOneTeacher = teacher_selector("Maths")
 mathsLessonOneRoom = room_selector("Maths", mathsLessonOneTeacher)
 
-mathsLessonOne = Lesson(
-    mathsLessonOneTeacher,
-    "Ma12B",
-    mathsLessonOneRoom,
-    "Maths",
-    3,
-    "Tue",
-)
-
 computerScienceTeacher = teacher_selector("ComputerScience")
-
-print(mathsLessonOne)
-print(mathsLessonOneTeacher.timetable.print_timetable())
-print(mathsLessonOneTeacher.is_available())
 
 # TODO: DO THE CREATE GENOME FUNCTION IN genetic_algorithm.py
 
