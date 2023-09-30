@@ -115,4 +115,6 @@ class Individual:
 
 if __name__ == "__main__":
     individual = Individual()
-    individual.create_genome()
+    teachers = individual.create_genome()
+    for teacher in teachers:
+        print(teacher)

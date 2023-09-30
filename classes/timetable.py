@@ -1,46 +1,48 @@
 from typing import Dict
 
-DEFAULT_DATA = {
-    "Mon": {
-        "P1": {"Class": "", "Room": 0},
-        "P2": {"Class": "", "Room": 0},
-        "P3": {"Class": "", "Room": 0},
-        "P4": {"Class": "", "Room": 0},
-        "P5": {"Class": "", "Room": 0},
-        "P6": {"Class": "", "Room": 0},
-    },
-    "Tue": {
-        "P1": {"Class": "", "Room": 0},
-        "P2": {"Class": "", "Room": 0},
-        "P3": {"Class": "", "Room": 0},
-        "P4": {"Class": "", "Room": 0},
-        "P5": {"Class": "", "Room": 0},
-        "P6": {"Class": "", "Room": 0},
-    },
-    "Wed": {
-        "P1": {"Class": "", "Room": 0},
-        "P2": {"Class": "", "Room": 0},
-        "P3": {"Class": "", "Room": 0},
-        "P4": {"Class": "", "Room": 0},
-        "P5": {"Class": "", "Room": 0},
-        "P6": {"Class": "", "Room": 0},
-    },
-    "Thu": {
-        "P1": {"Class": "", "Room": 0},
-        "P2": {"Class": "", "Room": 0},
-        "P3": {"Class": "", "Room": 0},
-        "P4": {"Class": "", "Room": 0},
-        "P5": {"Class": "", "Room": 0},
-        "P6": {"Class": "", "Room": 0},
-    },
-}
-
 
 class Timetable:
     def __init__(
         self,
     ) -> None:
-        self.timetable = DEFAULT_DATA
+        self.timetable = Timetable._default_timetable()
+
+    @staticmethod
+    def _default_timetable():
+        return {
+            "Mon": {
+                "P1": {"Class": "", "Room": 0},
+                "P2": {"Class": "", "Room": 0},
+                "P3": {"Class": "", "Room": 0},
+                "P4": {"Class": "", "Room": 0},
+                "P5": {"Class": "", "Room": 0},
+                "P6": {"Class": "", "Room": 0},
+            },
+            "Tue": {
+                "P1": {"Class": "", "Room": 0},
+                "P2": {"Class": "", "Room": 0},
+                "P3": {"Class": "", "Room": 0},
+                "P4": {"Class": "", "Room": 0},
+                "P5": {"Class": "", "Room": 0},
+                "P6": {"Class": "", "Room": 0},
+            },
+            "Wed": {
+                "P1": {"Class": "", "Room": 0},
+                "P2": {"Class": "", "Room": 0},
+                "P3": {"Class": "", "Room": 0},
+                "P4": {"Class": "", "Room": 0},
+                "P5": {"Class": "", "Room": 0},
+                "P6": {"Class": "", "Room": 0},
+            },
+            "Thu": {
+                "P1": {"Class": "", "Room": 0},
+                "P2": {"Class": "", "Room": 0},
+                "P3": {"Class": "", "Room": 0},
+                "P4": {"Class": "", "Room": 0},
+                "P5": {"Class": "", "Room": 0},
+                "P6": {"Class": "", "Room": 0},
+            },
+        }
 
     def get_class_set(self, day, period):
         return self.timetable[day][period]["Class"]
